@@ -1,16 +1,19 @@
 package io.romo.bakingapp.model;
 
-public class RecipeIngredient {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class RecipeIngredient implements Parcelable {
 
     private String ingredient;
     private String measure;
-    private int quantity;
+    private double quantity;
 
     public RecipeIngredient() {
 
     }
 
-    public RecipeIngredient(String ingredient, String measure, int quantity) {
+    public RecipeIngredient(String ingredient, String measure, double quantity) {
         this.ingredient = ingredient;
         this.measure = measure;
         this.quantity = quantity;
@@ -32,11 +35,42 @@ public class RecipeIngredient {
         this.measure = measure;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(ingredient);
+        dest.writeString(measure);
+        dest.writeDouble(quantity);
+    }
+
+    private RecipeIngredient(Parcel in) {
+        ingredient = in.readString();
+        measure = in.readString();
+        quantity = in.readDouble();
+    }
+
+    public static final Creator<RecipeIngredient> CREATOR = new Creator<RecipeIngredient>() {
+        @Override
+        public RecipeIngredient createFromParcel(Parcel source) {
+            return new RecipeIngredient(source);
+        }
+
+        @Override
+        public RecipeIngredient[] newArray(int size) {
+            return new RecipeIngredient[size];
+        }
+    };
 }
