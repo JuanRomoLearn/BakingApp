@@ -76,7 +76,6 @@ public class Recipe implements Parcelable {
         this.recipeSteps = recipeSteps;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -92,7 +91,7 @@ public class Recipe implements Parcelable {
         dest.writeTypedList(recipeSteps);
     }
 
-    private Recipe(Parcel in) {
+    protected Recipe(Parcel in) {
         id = in.readInt();
         name = in.readString();
         servings = in.readInt();

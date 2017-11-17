@@ -43,7 +43,6 @@ public class RecipeIngredient implements Parcelable {
         this.quantity = quantity;
     }
 
-
     @Override
     public int describeContents() {
         return 0;

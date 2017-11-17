@@ -64,7 +64,6 @@ public class RecipeStep implements Parcelable {
         this.thumbnailURL = thumbnailURL;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -79,7 +78,7 @@ public class RecipeStep implements Parcelable {
         dest.writeString(this.thumbnailURL);
     }
 
-    private RecipeStep(Parcel in) {
+    protected RecipeStep(Parcel in) {
         id = in.readInt();
         shortDescription = in.readString();
         description = in.readString();
