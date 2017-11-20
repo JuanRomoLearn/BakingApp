@@ -3,7 +3,7 @@
     <!-- global -->
     <string name="app_name">Baking App</string>
 
-    <!-- recipes -->
+    <!-- recipe details -->
     <string name="servings">%1$d servings</string>
 
 </resources>

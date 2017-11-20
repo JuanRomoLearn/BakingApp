@@ -53,7 +53,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
             implements View.OnClickListener {
 
         @BindView(R.id.name) TextView name;
-        @BindView(R.id.servings) TextView servings;
 
         private Recipe recipe;
 
@@ -72,9 +71,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
         public void bindRecipe(Recipe recipe) {
             this.recipe = recipe;
             name.setText(recipe.getName());
-            servings.setText(
-                    itemView.getContext().getString(R.string.servings, recipe.getServings())
-            );
         }
     }
 }
