@@ -11,21 +11,21 @@ public class Recipe implements Parcelable {
     private String name;
     private int servings;
     private String image;
-    private List<RecipeIngredient> recipeIngredients;
-    private List<RecipeStep> recipeSteps;
+    private List<RecipeIngredient> ingredients;
+    private List<RecipeStep> steps;
 
     public Recipe() {
 
     }
 
     public Recipe(int id, String name, int servings, String image,
-                  List<RecipeIngredient> recipeIngredients, List<RecipeStep> recipeSteps) {
+                  List<RecipeIngredient> ingredients, List<RecipeStep> steps) {
         this.id = id;
         this.name = name;
         this.servings = servings;
         this.image = image;
-        this.recipeIngredients = recipeIngredients;
-        this.recipeSteps = recipeSteps;
+        this.ingredients = ingredients;
+        this.steps = steps;
     }
 
     public int getId() {
@@ -60,20 +60,20 @@ public class Recipe implements Parcelable {
         this.image = image;
     }
 
-    public List<RecipeIngredient> getRecipeIngredients() {
-        return recipeIngredients;
+    public List<RecipeIngredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
-        this.recipeIngredients = recipeIngredients;
+    public void setIngredients(List<RecipeIngredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
-    public List<RecipeStep> getRecipeSteps() {
-        return recipeSteps;
+    public List<RecipeStep> getSteps() {
+        return steps;
     }
 
-    public void setRecipeSteps(List<RecipeStep> recipeSteps) {
-        this.recipeSteps = recipeSteps;
+    public void setSteps(List<RecipeStep> steps) {
+        this.steps = steps;
     }
 
     @Override
@@ -87,8 +87,8 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeInt(servings);
         dest.writeString(image);
-        dest.writeTypedList(recipeIngredients);
-        dest.writeTypedList(recipeSteps);
+        dest.writeTypedList(ingredients);
+        dest.writeTypedList(steps);
     }
 
     protected Recipe(Parcel in) {
@@ -96,8 +96,8 @@ public class Recipe implements Parcelable {
         name = in.readString();
         servings = in.readInt();
         image = in.readString();
-        recipeIngredients = in.createTypedArrayList(RecipeIngredient.CREATOR);
-        recipeSteps = in.createTypedArrayList(RecipeStep.CREATOR);
+        ingredients = in.createTypedArrayList(RecipeIngredient.CREATOR);
+        steps = in.createTypedArrayList(RecipeStep.CREATOR);
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
