@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <CheckBox
+        android:id="@+id/recipe_ingredient_obtained"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recipe_ingredient_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="72dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_ingredient_quantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Graham Cracker crumbs" />
+
+    <TextView
+        android:id="@+id/recipe_ingredient_quantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recipe_ingredient_name"
+        app:layout_constraintStart_toStartOf="@+id/recipe_ingredient_name"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_ingredient_name"
+        tools:text="CUP: 2" />
+
+</android.support.constraint.ConstraintLayout>

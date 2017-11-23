@@ -6,4 +6,7 @@
     <!-- recipe details -->
     <string name="recipe_servings">Servings: %d</string>
 
+    <!-- recipe ingredients -->
+    <string name="recipe_ingredient">%s: %.2f</string>
+
 </resources>
