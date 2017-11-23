@@ -2,13 +2,16 @@ package io.romo.bakingapp.fragment;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
@@ -31,15 +34,16 @@ public class RecipesFragment extends Fragment
     private static final String SAVED_LIST_POSITION = "list_position";
 
     @BindView(R.id.recipes) RecyclerView recipes;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     private RecipesAdapter adapter;
-    private Parcelable savedListPosition;
+    private Parcelable recipesListPosition;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            savedListPosition = savedInstanceState.getParcelable(SAVED_LIST_POSITION);
+            recipesListPosition = savedInstanceState.getParcelable(SAVED_LIST_POSITION);
         }
     }
 
@@ -54,8 +58,14 @@ public class RecipesFragment extends Fragment
                 getResources().getInteger(R.integer.num_columns));
         recipes.setLayoutManager(layoutManager);
 
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
+                getActivity(), layoutManager.getOrientation());
+        recipes.addItemDecoration(dividerItemDecoration);
+
         adapter = new RecipesAdapter(this);
         recipes.setAdapter(adapter);
+
+        progressBar.setVisibility(View.VISIBLE);
 
         RecipesClient.createService(RecipesService.class)
                 .getRecipes()
@@ -71,20 +81,26 @@ public class RecipesFragment extends Fragment
     }
 
     @Override
-    public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
+    public void onResponse(@NonNull Call<List<Recipe>> call, @NonNull Response<List<Recipe>> response) {
+        progressBar.setVisibility(View.INVISIBLE);
         if (response.isSuccessful()) {
             adapter.replaceData(response.body());
-            recipes.getLayoutManager().onRestoreInstanceState(savedListPosition);
+
+            recipes.getLayoutManager().onRestoreInstanceState(recipesListPosition);
+        } else {
+            // TODO display error message
         }
     }
 
     @Override
-    public void onFailure(Call<List<Recipe>> call, Throwable t) {
-        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+    public void onFailure(@NonNull Call<List<Recipe>> call, @NonNull Throwable t) {
+        progressBar.setVisibility(View.INVISIBLE);
+
+        // TODO display error message
     }
 
     @Override
     public void onRecipeClick(Recipe clickedRecipe) {
-        Toast.makeText(getActivity(), "Recipe Card Clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Recipe Clicked", Toast.LENGTH_SHORT).show();
     }
 }

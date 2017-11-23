@@ -1,5 +1,6 @@
 package io.romo.bakingapp.adapter;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +53,8 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
     class RecipesViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
-        @BindView(R.id.name) TextView name;
+        @BindView(R.id.recipe_name) TextView recipeName;
+        @BindView(R.id.recipe_servings) TextView recipeServings;
 
         private Recipe recipe;
 
@@ -70,7 +72,10 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
 
         public void bindRecipe(Recipe recipe) {
             this.recipe = recipe;
-            name.setText(recipe.getName());
+            recipeName.setText(recipe.getName());
+            Resources resources = recipeServings.getContext().getResources();
+            recipeServings.setText(resources.getString(
+                    R.string.recipe_servings, recipe.getServings()));
         }
     }
 }

@@ -4,6 +4,6 @@
     <string name="app_name">Baking App</string>
 
     <!-- recipe details -->
-    <string name="servings">%1$d servings</string>
+    <string name="recipe_servings">Servings: %d</string>
 
 </resources>
