@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- standard metrics -->
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="keyline_1">72dp</dimen>
+    <dimen name="two_line_list_height">80dp</dimen>
+    <dimen name="primary_text_size">16sp</dimen>
+    <dimen name="secondary_text_size">14sp</dimen>
+
     <!-- grid -->
     <integer name="num_columns">1</integer>
 
